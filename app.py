@@ -347,7 +347,7 @@ def get_db_transport_rest_daten():
             logger.warning("Community-API: Wörrstadt-Station nicht gefunden")
             return None
 
-        berlin_tz = ZoneInfo("Europe/Berlin")
+        
         departures_resp = requests.get(
             f"https://v6.db.transport.rest/station/{station['id']}/departures",
             params={"duration": 60,"when": datetime.now(berlin_tz).isoformat()},
