@@ -9,6 +9,7 @@ import streamlit as st
 import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
+berlin_tz = ZoneInfo("Europe/Berlin")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("bahn_app")
@@ -245,7 +246,6 @@ def get_next_train_time(current_time, direction):
 
 
 def get_train_catch_status(train_time, walk_minutes, now=None):
-    berlin_tz = ZoneInfo("Europe/Berlin")
     now = now or datetime.now(berlin_tz)
 
     if not train_time or train_time == "---":
@@ -360,7 +360,7 @@ def get_db_transport_rest_daten():
             try:
                 if iso_str is None:
                     return None
-                dt = datetime.fromisoformat(iso_str.replace("Z", "+02:00"))
+                dt = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
                 dt_berlin = dt.astimezone(berlin_tz)
                 return dt_berlin.strftime("%H:%M")
             except Exception:
