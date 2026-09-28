@@ -245,7 +245,7 @@ def get_next_train_time(current_time, direction):
 
 
 def get_train_catch_status(train_time, walk_minutes, now=None):
-    now = now or datetime.now()
+    now = now or datetime.now(berlin_tz)
 
     if not train_time or train_time == "---":
         return False, "Keine Abfahrt", "#b0b0b0"
