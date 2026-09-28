@@ -245,6 +245,7 @@ def get_next_train_time(current_time, direction):
 
 
 def get_train_catch_status(train_time, walk_minutes, now=None):
+    berlin_tz = ZoneInfo("Europe/Berlin")
     now = now or datetime.now(berlin_tz)
 
     if not train_time or train_time == "---":
