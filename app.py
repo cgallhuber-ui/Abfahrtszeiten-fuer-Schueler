@@ -360,7 +360,7 @@ def get_db_transport_rest_daten():
             try:
                 if iso_str is None:
                     return None
-                dt = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+                dt = datetime.fromisoformat(iso_str.replace("Z", "+02:00"))
                 dt_berlin = dt.astimezone(berlin_tz)
                 return dt_berlin.strftime("%H:%M")
             except Exception:
