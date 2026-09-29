@@ -10,7 +10,6 @@ import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 berlin_tz = ZoneInfo("Europe/Berlin")
-from streamlit_autorefresh import st_autorefresh
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("bahn_app")
