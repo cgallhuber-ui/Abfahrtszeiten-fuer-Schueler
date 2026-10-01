@@ -114,7 +114,7 @@ st.markdown("""
         header, footer { visibility: hidden !important; height: 0px !important; }
     </style>
 """, unsafe_allow_html=True)
-count = st_autorefresh(interval=60000, key="fahrener_refresh")
+count = st_autorefresh(interval=600000, key="fahrener_refresh")
 
 # Koordinaten
 SCHULE_LAT, SCHULE_LON = 49.7891, 8.1672
