@@ -179,7 +179,7 @@ def get_woerrstadt_weather():
 
 
 def next_fixed_time(minutes):
-    now = datetime.now()
+    now = datetime.now(berlin_tz)
     for minute in minutes:
         candidate = now.replace(minute=minute, second=0, microsecond=0)
         if candidate >= now:
@@ -189,7 +189,7 @@ def next_fixed_time(minutes):
 
 
 def get_next_fixed_schedule(minutes, count=2, now=None):
-    now = now or datetime.now()
+    now = now or datetime.now(berlin_tz)
     candidates = []
     for minute in minutes:
         candidate = now.replace(minute=minute, second=0, microsecond=0)
@@ -216,7 +216,7 @@ def parse_departure_time(value, base_time=None):
     except ValueError:
         return None
 
-    base = base_time or datetime.now()
+    base = base_time or datetime.now(berlin_tz)
     candidate = base.replace(hour=parsed.hour, minute=parsed.minute, second=0, microsecond=0)
     return candidate
 
@@ -393,7 +393,7 @@ def get_db_transport_rest_daten():
 def get_zug_daten():
     if client is not None:
         try:
-            deps = client.departures(STATION_WOERRSTADT, datetime.now(), duration=60)
+            deps = client.departures(STATION_WOERRSTADT, datetime.now(berlin_tz), duration=60)
             if not deps:
                 return ["---"], ["---"], "Keine Abfahrten gefunden"
 
